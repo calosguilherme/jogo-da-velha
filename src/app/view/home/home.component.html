@@ -1,1 +1,20 @@
-<game></game>
+<ng-container *ngIf="!iniciar">
+<div class="container">
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>
+  <div class="item"></div>  
+</div>
+
+<div class="text-box">
+  <a href="#"><span class="text" (click)="iniciar = true">Iniciar Jogo</span></a>
+</div>
+</ng-container>
+
+<ng-container *ngIf="iniciar">
+  <game></game>
+</ng-container>

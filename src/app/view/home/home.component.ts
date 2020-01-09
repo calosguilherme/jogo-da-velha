@@ -8,7 +8,7 @@ import { HeroService } from 'src/app/services/heros.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  iniciar: boolean;
 
   constructor(
     private heroService: HeroService

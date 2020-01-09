@@ -1,1 +1,27 @@
 <h1>GAME</h1>
+<form>
+    <section class=game>
+        <div class="card">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
+            <div class="container-card">
+              <h4><b>John Doe</b></h4> 
+              <p>Architect & Engineer</p> 
+            </div>
+        </div>
+        <div class="board">   
+            <div *ngFor="let square of board" class="square"></div>
+          </div>
+        <div class="card">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
+            <div class="container-card">
+                  <h4><b>John Doe</b></h4> 
+                  <p>Architect & Engineer</p> 
+            </div>
+        </div>
+        
+    <!-- the board for display -->
+    </section>
+
+    <!-- reset button -->
+    <button type="reset" id="restart">Reiniciar</button>
+</form>

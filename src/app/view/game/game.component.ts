@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ["./game.component.scss"]
 })
 export class GameComponent implements OnInit {
- 
+  public board: Array<string> = [null,null,null,null,null,null,null,null,null,]
   constructor(
   ) { }
 
