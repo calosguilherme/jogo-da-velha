@@ -2,11 +2,26 @@
 <form>
     <section class=game>
         <div class="card">
-            <img src="img_avatar.png" alt="Avatar" style="width:100%">
-            <div class="container-card">
-              <h4><b>John Doe</b></h4> 
-              <p>Architect & Engineer</p> 
-            </div>
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                  <!-- Tabs Titles -->
+                  <!-- Icon -->
+                  <div class="fadeIn first">
+                    <img src="https://carlisletheacarlisletheatre.org/images/login-icon-svg.png" id="icon" alt="User Icon" />
+                  </div>
+              
+                  <!-- Login Form -->
+                  <form>
+                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Digite o nome do seu personagem">
+
+                  </form>
+              
+                </div>
+              </div>            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox">
+                <div class="knobs"></div>
+                <div class="layer"></div>
+              </div>
         </div>
         <div class="board">   
             <div *ngFor="let square of board" class="square"></div>
