@@ -14,8 +14,6 @@ export class HeroService {
   private options;
   private publicKey : string = '83998f5e523c50cab125ed1686b1d745';
   private privateKey : string = 'be3a6def183b20057e45e34d8e9038279012a2d6';
-  private timestamp = new Date().getTime();
-  private md5 = new Md5().appendAsciiStr(this.timestamp+this.privateKey+this.publicKey);
   
 
   constructor(
@@ -30,7 +28,9 @@ export class HeroService {
   }
 
   getHero(nameHero: string):any{
-      return this.http.get<any>('http://gateway.marvel.com/v1/public/characters?name='+nameHero+'&ts='+this.timestamp+'&apikey='+this.publicKey+'&hash='+this.md5.end());
+    let timestamp = new Date().getTime();
+    let md5 = new Md5().appendAsciiStr(timestamp+this.privateKey+this.publicKey);
+    return this.http.get<any>('http://gateway.marvel.com/v1/public/characters?name='+nameHero+'&ts='+timestamp+'&apikey='+this.publicKey+'&hash='+md5.end());
   }
 
 

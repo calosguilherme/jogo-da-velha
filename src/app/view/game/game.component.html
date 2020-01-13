@@ -1,42 +1,48 @@
-<h1>GAME</h1>
-<form>
-    <section class=game>
+<div style="text-align:center;">
+  <div *ngIf="startGame" style="display:flex">
+    <div class="score">Vitórias {{this.players[0].heroName}}: {{this.players[0].wins}}</div>
+    <div class="score">Empates: {{draw}}</div>
+    <div class="score">Vitórias {{this.players[1].heroName}}: {{this.players[1].wins}}</div>
+    </div>
+  <section class=game>
         <div class="card">
             <div class="wrapper fadeInDown">
                 <div id="formContent">
                   <!-- Tabs Titles -->
                   <!-- Icon -->
                   <div class="fadeIn first">
-                    <img src="https://carlisletheacarlisletheatre.org/images/login-icon-svg.png" id="icon" alt="User Icon" />
+                    <img [src]="players[0].heroImg ? players[0].heroImg : '../../../assets/login-icon-svg.png'" id="icon" alt="User Icon" />
                   </div>
-              
                   <!-- Login Form -->
-                  <form>
-                    <input type="text" id="login" class="fadeIn second" name="login" placeholder="Digite o nome do seu personagem">
-
-                  </form>
-              
+                    <input type="text"  [disabled]="players[0].ready"  class="fadeIn second" [(ngModel)]="players[0].heroName" (focusout)="getHero(players[0])" placeholder="Digite o nome do seu personagem">
                 </div>
-              </div>            <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox">
-                <div class="knobs"></div>
-                <div class="layer"></div>
+                <div *ngIf="startGame" class="xo">{{this.players[0].isPlayOne ? 'X' : 'O'}}</div>
               </div>
         </div>
-        <div class="board">   
-            <div *ngFor="let square of board" class="square"></div>
-          </div>
-        <div class="card">
-            <img src="img_avatar.png" alt="Avatar" style="width:100%">
-            <div class="container-card">
-                  <h4><b>John Doe</b></h4> 
-                  <p>Architect & Engineer</p> 
+        <div class="board" id="board">   
+            <div *ngFor="let square of board; let i = index" class="square" (click)="select(i)">
+              <span class="nought" *ngIf="board[i] === 0" [id]="'sq'+(i)">O</span>
+              <span class="cross" *ngIf="board[i] === 1" [id]="'sq'+(i)">X</span>
             </div>
         </div>
-        
+        <div class="card">
+          <div class="wrapper fadeInDown">
+              <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                  <img [src]="players[1].heroImg ? players[1].heroImg : '../../../assets/login-icon-svg.png'" id="icon" alt="User Icon" />
+                </div>
+            
+                <!-- Login Form -->
+                  <input type="text" [disabled]="players[1].ready" class="fadeIn second" [(ngModel)]="players[1].heroName" (focusout)="getHero(players[1])" placeholder="Digite o nome do seu personagem">
+              </div>
+              <div *ngIf="startGame" class="xo">{{this.players[1].isPlayOne ? 'X' : 'O'}}</div>
+            </div>
+      </div>
     <!-- the board for display -->
     </section>
 
     <!-- reset button -->
-    <button type="reset" id="restart">Reiniciar</button>
-</form>
+    <button type="reset" id="restart" (click)="reset()"> Reiniciar</button>
+    </div>
