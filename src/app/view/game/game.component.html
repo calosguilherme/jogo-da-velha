@@ -5,19 +5,19 @@
     <div class="score">Vitórias {{this.players[1].heroName}}: {{this.players[1].wins}}</div>
     </div>
   <section class=game>
-    <card [player]="players[0]" [startGame]="startGame" (returnHero)="allReady()"></card>
+    <card [player]="players[0]" [startGame]="startGame" [lastPlayer]="lastPlayer" (returnHero)="allReady()"></card>
         <div class="board" id="board">   
             <div *ngFor="let square of board; let i = index" class="square" (click)="select(i)">
               <span class="nought" *ngIf="board[i] === 0" [id]="'sq'+(i)">O</span>
               <span class="cross" *ngIf="board[i] === 1" [id]="'sq'+(i)">X</span>
             </div>
         </div>
-      <card [player]="players[1]" [startGame]="startGame" (returnHero)="allReady()"></card>
+      <card [player]="players[1]" [startGame]="startGame" [lastPlayer]="lastPlayer" (returnHero)="allReady()"></card>
     <!-- the board for display -->
     </section>
 
     <!-- reset button -->
     <button type="reset" id="restart" (click)="reset()"> Reiniciar</button>
-    <h1 *ngIf="endRound && winner !=-1" class="text-winner">{{getWinner()}} É O VENCEDOR!</h1>
-    <h1 *ngIf="endRound && winner ==-1" class="text-winner">NINGUÉM VENCEU!</h1>
+    <h1 *ngIf="endRound && winner !=-1" class="text-winner" [@flip]="flip">{{getWinner()}} É O VENCEDOR!</h1>
+    <h1 *ngIf="endRound && winner ==-1" class="text-winner" [@flip]="flip">NINGUÉM VENCEU!</h1>
     </div>

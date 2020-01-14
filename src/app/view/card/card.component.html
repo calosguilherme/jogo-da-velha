@@ -9,7 +9,7 @@
                   <!-- Login Form -->
                     <input type="text"  [disabled]="player.ready"  class="fadeIn second" [ngClass]="{'error' : player.requestFailed}" (focus)="player.requestFailed = false" [(ngModel)]="player.heroName" (focusout)="getHero(player)" placeholder="Digite o nome do seu personagem">
                 </div>
-                <div *ngIf="startGame" class="xo">{{this.player.isPlayOne ? 'X' : 'O'}}</div>
+                <div *ngIf="startGame" class="xo" [@bounce]="bounce">{{this.player.isPlayOne ? 'X' : 'O'}}</div>
                 <div *ngIf="this.player.requestFailed" class="error-text" >Nome de Herói não encontrado</div>
               </div>
 </div>

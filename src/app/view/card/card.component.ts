@@ -1,18 +1,24 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Router } from '@angular/router';
 import { Player } from 'src/app/model/player.model';
 import { HeroService } from 'src/app/services/heros.service';
-import { Score } from 'src/app/model/score.model';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounce } from 'ng-animate';
+ 
 
 @Component({
   selector: "card",
   templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.scss"]
+  styleUrls: ["./card.component.scss"],
+  animations: [
+    trigger('bounce', [transition('* => *', useAnimation(bounce))])
+  ],
 })
 export class CardComponent implements OnInit {
   @Input() player:Player
   @Input() startGame:boolean
   @Output() returnHero = new EventEmitter();
+  @Input() lastPlayer;
+  bounce:any
 
   constructor(
     private heroService: HeroService,

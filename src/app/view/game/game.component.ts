@@ -1,13 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from '@angular/router';
 import { Player } from 'src/app/model/player.model';
 import { HeroService } from 'src/app/services/heros.service';
-import { Score } from 'src/app/model/score.model';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { flip } from 'ng-animate';
 
 @Component({
   selector: "game",
   templateUrl: "./game.component.html",
-  styleUrls: ["./game.component.scss"]
+  styleUrls: ["./game.component.scss"],
+  animations: [
+    trigger('flip', [transition('* => *', useAnimation(flip))])
+  ],
 })
 export class GameComponent implements OnInit {
   public board: Array<number> = [null,null,null,null,null,null,null,null,null,]
@@ -17,6 +20,7 @@ export class GameComponent implements OnInit {
   public winner: number;
   public endRound: boolean;
   public lastPlayer: number = 1;
+  flip: any;
 
   constructor(
     private heroService: HeroService,
@@ -52,7 +56,7 @@ export class GameComponent implements OnInit {
   equalSquare(squareA:number, squareB:number, squareC:number):boolean {
     let _board = this.board
     if(_board[squareA] == _board[squareB] && _board[squareA] == _board[squareC] && _board[squareA] != null){
-      this.winner = squareA;
+      this.winner = _board[squareA];
       document.getElementById('sq'+squareA).classList.add('winner');
       document.getElementById('sq'+squareB).classList.add('winner');
       document.getElementById('sq'+squareC).classList.add('winner');

@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "ng-animate": "^0.3.4",
     "rxjs": "~6.4.0",
     "ts-md5": "^1.2.7",
     "tslib": "^1.10.0",
