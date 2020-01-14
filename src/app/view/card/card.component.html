@@ -1,0 +1,15 @@
+<div class="card" [ngClass]="{'play' : (player.isPlayOne ? 1 : 0) === lastPlayer}">
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                  <!-- Tabs Titles -->
+                  <!-- Icon -->
+                  <div class="fadeIn first">
+                    <img [src]="player.heroImg ? player.heroImg : '../../../assets/login-icon-svg.png'" id="icon" alt="User Icon" />
+                  </div>
+                  <!-- Login Form -->
+                    <input type="text"  [disabled]="player.ready"  class="fadeIn second" [ngClass]="{'error' : player.requestFailed}" (focus)="player.requestFailed = false" [(ngModel)]="player.heroName" (focusout)="getHero(player)" placeholder="Digite o nome do seu personagem">
+                </div>
+                <div *ngIf="startGame" class="xo">{{this.player.isPlayOne ? 'X' : 'O'}}</div>
+                <div *ngIf="this.player.requestFailed" class="error-text" >Nome de Herói não encontrado</div>
+              </div>
+</div>

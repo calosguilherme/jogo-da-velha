@@ -4,6 +4,7 @@ export class Player{
     ready: boolean;
     heroImg: string;
     wins: number;
+    requestFailed: boolean;
 
     constructor() { }
 }

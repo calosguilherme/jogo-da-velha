@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroService } from './services/heros.service';
 import { GameComponent } from './view/game/game.component';
+import { CardComponent } from './view/card/card.component';
 import { HomeComponent } from './view/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     GameComponent,
     HomeComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,

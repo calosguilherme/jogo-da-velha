@@ -41,20 +41,6 @@ export class GameComponent implements OnInit {
     }
   }
 
-  getHero(player: Player){
-    this.heroService.getHero(player.heroName).subscribe( hero =>
-      { 
-        if(hero.data.results.length>0){
-        player.heroName = hero.data.results[0].name;
-        player.heroImg = hero.data.results[0].thumbnail.path +'.'+hero.data.results[0].thumbnail.extension
-        player.ready = true;
-        player.wins = 0;
-        this.allReady()
-      }
-    },
-    error => console.log(error))
-  }
-
   reset(){
     this.board = [null,null,null,null,null,null,null,null,null,]
     this.startGame = true;
@@ -64,7 +50,6 @@ export class GameComponent implements OnInit {
   }
 
   equalSquare(squareA:number, squareB:number, squareC:number):boolean {
-    debugger
     let _board = this.board
     if(_board[squareA] == _board[squareB] && _board[squareA] == _board[squareC] && _board[squareA] != null){
       this.winner = squareA;
@@ -91,13 +76,19 @@ export class GameComponent implements OnInit {
     || this.equalSquare(0, 3, 6) || this.equalSquare(1, 4, 7) || this.equalSquare(2, 5, 8)
     || this.equalSquare(0, 4, 8) || this.equalSquare(2, 4, 6)){
       this.endRound = true;
+      this.lastPlayer= -1;
     }
     else if(this.board.filter(square => square == null).length==0){
       this.endRound = true;
       this.draw +=1;
+      this.lastPlayer= -1;
+      this.winner = -1
       document.getElementById('board').classList.add('velha');
     }
   }
 
+  getWinner(){
+    return(this.players.find(player => (player.isPlayOne ? 1: 0) == this.winner).heroName)
+  }
 
 }
